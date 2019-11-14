@@ -50,7 +50,7 @@
             numberDisplay.innerHTML=median
             document.querySelector(".buttons").addEventListener("click",(e)=>{
                 if(e.target.id==="button-lower"){
-                    if(count<=9){
+                    if(count<9){
                         max=median
                         median=Math.floor((max + min)/2)
                         numberDisplay.innerHTML=median
