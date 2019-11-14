@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            width:100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size:2rem;
+        }
+        p{
+            margin-bottom: 5rem;
+        }
+        .button{
+            background: white;
+            border: 1px solid black;
+            padding: 2rem;
+            outline:none;
+        }
+    </style>
+    <title>Guessing game</title>
+</head>
+<body>
+    <p>Is your number <span class="number"></span></p>
+    <p>Guesses: <span class="count">0</p>
+    <div class="buttons">
+        <button class="button" id="button-lower">Lower</button>
+        <button class="button" id="button-higher">Higher</button>
+        <button class="button" id="button-retry">Retry</button>
+    </div>
+    <script type="text/javascript">
+        (function (){
+            let max=500
+            let min=0
+            let median=Math.floor((max + min)/2)
+            let count=0
+            let numberDisplay=document.querySelector(".number")
+            let countDisplay=document.querySelector(".count")
+            numberDisplay.innerHTML=median
+            document.querySelector(".buttons").addEventListener("click",(e)=>{
+                if(e.target.id==="button-lower"){
+                    if(count<=9){
+                        max=median
+                        median=Math.floor((max + min)/2)
+                        numberDisplay.innerHTML=median
+                        count+=1
+                        countDisplay.innerHTML=count
+                    }
+                    
+                }
+                if (e.target.id==="button-higher"){
+                    if(count<9){
+                        min=median
+                        median=Math.floor((max + min)/2)
+                        numberDisplay.innerHTML=median
+                        count+=1
+                        countDisplay.innerHTML=count
+                    }
+                }
+                if (e.target.id==="button-retry"){
+                    max=500
+                    min=0
+                    median=Math.floor((max + min)/2)
+                    count=0
+                    numberDisplay.innerHTML=median
+                    countDisplay.innerHTML=count
+                }
+            })
+        })()
+    </script>
+</body>
+</html>
